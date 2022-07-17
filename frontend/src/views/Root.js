@@ -1,16 +1,12 @@
 import React from 'react';
-import { GlobalStyle } from 'assets/styles/GlobalStyle';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'assets/styles/theme';
-import App from './App/App';
+import { useAuth } from 'hooks/useAuth';
+import AuthenticatedApp from './AuthenticatedApp/AuthenticatedApp';
+import UnauthenticatedApp from './UnauthenticatedApp/UnauthenticatedApp';
 
 const Root = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-  );
+  const { user } = useAuth();
+
+  return <>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</>;
 };
 
 export default Root;
